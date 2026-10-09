@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Local Market profile.">
+  <title>Profile — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="nav-root"></div>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>My profile</h1>
+        <p class="muted">Your account details and shortcuts.</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-danger btn-sm" id="logout-btn">Log out</button>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <section class="panel" aria-labelledby="p-name">
+        <div class="profile-head">
+          <span class="avatar xl" id="avatar" aria-hidden="true">?</span>
+          <div>
+            <h2 id="p-name">Loading...</h2>
+            <p class="muted" id="p-email"></p>
+          </div>
+        </div>
+        <div class="kv-list">
+          <div class="kv"><span>Name</span><b id="v-name">—</b></div>
+          <div class="kv"><span>Email</span><b id="v-email">—</b></div>
+          <div class="kv"><span>Phone</span><b id="v-phone">—</b></div>
+          <div class="kv"><span>Role</span><b id="v-role">—</b></div>
+        </div>
+        <p class="small muted">Profile editing is not part of this module — orders, addresses and favourites are managed on their own pages.</p>
+      </section>
+
+      <section aria-label="Account shortcuts">
+        <a class="shortcut" href="orders.html"><span aria-hidden="true">📦</span><span><b>My orders</b><span class="small muted">History, tracking and payment status</span></span></a>
+        <a class="shortcut" href="favorites.html"><span aria-hidden="true">♥</span><span><b>Favorites</b><span class="small muted">Dishes you have saved</span></span></a>
+        <a class="shortcut" href="addresses.html"><span aria-hidden="true">📍</span><span><b>Addresses</b><span class="small muted">Manage delivery locations</span></span></a>
+        <a class="shortcut" href="cart.html"><span aria-hidden="true">🛒</span><span><b>Cart</b><span class="small muted">Review before checkout</span></span></a>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      LM.ui.renderNavbar("profile.html");
+      LM.ui.renderFooter();
+
+      if (!LM.auth.isLoggedIn()) {
+        document.querySelector("main").innerHTML = LM.ui.unauthorizedState();
+        return;
+      }
+
+      const initials = (name) =>
+        String(name || "?").split(/\s+/).slice(0, 2).map((w) => w.charAt(0).toUpperCase()).join("");
+
+      const paint = (user) => {
+        if (!user) return;
+        document.getElementById("v-name").textContent = user.name || "—";
+        document.getElementById("v-email").textContent = user.email || "—";
+        document.getElementById("v-phone").textContent = user.phone || "—";
+        document.getElementById("v-role").textContent = user.role === "admin" ? "Administrator" : "Customer";
+        document.getElementById("p-name").textContent = user.name || "Account";
+        document.getElementById("p-email").textContent = user.email || "";
+        document.getElementById("avatar").textContent = initials(user.name);
+        document.title = (user.name || "Profile") + " — Local Market";
+      };
+
+      paint(LM.auth.user());
+
+      LM.auth.refreshMe().then(paint);
+
+      document.getElementById("logout-btn").addEventListener("click", async () => {
+        const ok = await LM.ui.confirmModal({
+          title: "Log out?",
+          message: "You will need to sign in again to order.",
+          okLabel: "Log out",
+        });
+        if (ok) LM.auth.logout();
+      });
+    })();
+  </script>
+</body>
+</html>

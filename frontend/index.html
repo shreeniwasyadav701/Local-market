@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local Market — fresh food and local essentials from your neighbourhood, delivered to your door.">
+  <title>Local Market — Fresh food, delivered locally</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="nav-root"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge badge-warning" style="margin-bottom:14px">🌱 Fresh · Local · Fast</span>
+        <h1>Fresh from your neighbourhood, delivered to your door.</h1>
+        <p class="sub">Discover local kitchens, bakers and grocers. Order in seconds, track in real time, pay your way.</p>
+
+        <form class="hero-search" id="hero-search" role="search">
+          <label class="sr-only" for="hero-q">Search food or restaurants</label>
+          <input id="hero-q" name="q" type="search" placeholder="Search biryani, pizza, restaurants..." autocomplete="off">
+          <button class="btn btn-accent" type="submit">Search</button>
+        </form>
+
+        <div class="hero-stats" id="hero-stats">
+          <div class="hero-stat"><b id="stat-rest">—</b><span>Local restaurants</span></div>
+          <div class="hero-stat"><b id="stat-food">—</b><span>Dishes to explore</span></div>
+          <div class="hero-stat"><b>30 min</b><span>Average delivery</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cat-h">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="cat-h">What are you craving?</h2>
+        </div>
+        <div class="rail" id="cat-rail" role="list"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="rest-h">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="rest-h">Popular restaurants</h2>
+          <a class="link" href="restaurants.html">View all →</a>
+        </div>
+        <div id="restaurants-zone"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="food-h">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="food-h">Popular dishes</h2>
+          <a class="link" href="search.html?type=food">View all →</a>
+        </div>
+        <div id="foods-zone"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

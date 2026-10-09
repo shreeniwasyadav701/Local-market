@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to Local Market.">
+  <title>Login — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+  <div id="nav-root"></div>
+
+  <main class="auth-wrap">
+    <section class="auth-card" aria-labelledby="login-h">
+      <div class="auth-head">
+        <span class="brand-mark lg" aria-hidden="true">LM</span>
+        <h1 id="login-h">Welcome back</h1>
+        <p class="muted">Login to order, track and save your favourites.</p>
+      </div>
+
+      <form id="login-form" class="form-grid" novalidate>
+        <label><span>Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label><span>Password</span>
+          <input type="password" name="password" required minlength="6" autocomplete="current-password" placeholder="••••••••">
+        </label>
+        <p class="form-error" id="form-error" hidden role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Login</button>
+      </form>
+
+      <p class="auth-alt">New here? <a href="register.html">Create an account</a></p>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      LM.ui.renderNavbar("login.html");
+      if (LM.auth.isLoggedIn()) {
+        window.location.replace("index.html");
+        return;
+      }
+      const form = document.getElementById("login-form");
+      const errEl = document.getElementById("form-error");
+      const btn = document.getElementById("submit-btn");
+      const redirect = new URLSearchParams(window.location.search).get("redirect") || "index.html";
+
+      const fail = (msg) => {
+        errEl.textContent = msg;
+        errEl.hidden = false;
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errEl.hidden = true;
+        const email = form.email.value.trim().toLowerCase();
+        const password = form.password.value;
+        if (!email || !password) {
+          fail("Please enter both email and password.");
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = "Logging in...";
+        try {
+          await LM.auth.login(email, password);
+          LM.ui.toast("Welcome back!", "success");
+          window.location.href = /^\/?[a-z0-9_-]+\.html(\?[^#]*)?$/i.test(redirect) ? redirect : "index.html";
+        } catch (err) {
+          fail(err.status === 401 ? "Invalid email or password." : err.message);
+          btn.disabled = false;
+          btn.textContent = "Login";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

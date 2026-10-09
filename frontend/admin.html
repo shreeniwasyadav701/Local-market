@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Overview — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div id="nav-root"></div>
+
+  <div class="container admin-shell">
+    <div id="admin-nav-root"></div>
+
+    <main class="admin-main">
+      <div class="admin-head">
+        <div>
+          <h1 id="admin-title">Overview</h1>
+          <p class="muted" id="admin-subtitle">Store activity at a glance.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline btn-sm" id="refresh-btn">⟳ Refresh</button>
+        </div>
+      </div>
+
+      <div id="stats-zone">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="s-label">Orders</div><div class="s-value">—</div></div>
+          <div class="stat-card"><div class="s-label">Restaurants</div><div class="s-value">—</div></div>
+          <div class="stat-card"><div class="s-label">Foods</div><div class="s-value">—</div></div>
+          <div class="stat-card"><div class="s-label">Payments</div><div class="s-value">—</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Recent orders</h2>
+          <a class="btn btn-sm btn-outline" href="admin-orders.html">View all orders</a>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Placed</th>
+              </tr>
+            </thead>
+            <tbody id="recent-orders">
+              <tr><td colspan="5" class="empty-cell">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Restaurants needing attention</h2>
+          <a class="btn btn-sm btn-outline" href="admin-restaurants.html">Manage restaurants</a>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Restaurant</th>
+                <th>Cuisine</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="rest-alerts">
+              <tr><td colspan="4" class="empty-cell">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-shell.js"></script>
+  <script src="js/admin-overview.js"></script>
+</body>
+</html>

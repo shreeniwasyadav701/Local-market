@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Fresh food bowl illustration">
+  <rect width="600" height="400" fill="#fdf3e3"/>
+  <ellipse cx="300" cy="255" rx="210" ry="70" fill="#f5e0c5"/>
+  <path d="M110 230 A190 130 0 0 0 490 230" fill="#ffffff" stroke="#12876f" stroke-width="8"/>
+  <ellipse cx="300" cy="230" rx="190" ry="55" fill="#fff7ec" stroke="#12876f" stroke-width="6"/>
+  <circle cx="230" cy="215" r="34" fill="#f59e0b"/>
+  <circle cx="320" cy="228" r="30" fill="#e05a3f"/>
+  <circle cx="395" cy="212" r="26" fill="#12876f"/>
+  <circle cx="285" cy="196" r="20" fill="#8bc34a"/>
+  <path d="M150 300 Q300 340 450 300" fill="none" stroke="#12876f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M300 120 Q295 150 300 175" fill="none" stroke="#c8b8a2" stroke-width="7" stroke-linecap="round"/>
+  <path d="M330 115 Q325 148 330 172" fill="none" stroke="#c8b8a2" stroke-width="7" stroke-linecap="round"/>
+  <path d="M270 115 Q265 148 270 172" fill="none" stroke="#c8b8a2" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Restaurants — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div id="nav-root"></div>
+
+  <div class="container admin-shell">
+    <div id="admin-nav-root"></div>
+
+    <main class="admin-main">
+      <div class="admin-head">
+        <div>
+          <h1 id="admin-title">Restaurants</h1>
+          <p class="muted" id="admin-subtitle">Create, edit and manage partner restaurants.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary btn-sm" id="new-btn">+ New restaurant</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 id="rest-count">Restaurants</h2>
+          <div class="toolbar">
+            <input class="input" id="search-input" type="search" placeholder="Search name, cuisine, address…" aria-label="Search restaurants">
+            <button class="btn btn-outline btn-sm" id="search-btn">Search</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Restaurant</th>
+                <th>Cuisine</th>
+                <th>Delivery</th>
+                <th>Fee</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="rest-body">
+              <tr><td colspan="6" class="empty-cell">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="rest-pager"></div>
+    </main>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-shell.js"></script>
+  <script src="js/admin-restaurants.js"></script>
+</body>
+</html>

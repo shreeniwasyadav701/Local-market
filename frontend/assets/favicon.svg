@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Local Market">
+  <rect width="64" height="64" rx="14" fill="#12876f"/>
+  <path d="M14 44 L14 26 L32 16 L50 26 L50 44 Z" fill="#ffffff" opacity="0.15"/>
+  <text x="32" y="42" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#f59e0b" text-anchor="middle">LM</text>
+</svg>

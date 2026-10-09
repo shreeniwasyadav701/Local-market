@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin Foods — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <div id="nav-root"></div>
+
+  <div class="container admin-shell">
+    <div id="admin-nav-root"></div>
+
+    <main class="admin-main">
+      <div class="admin-head">
+        <div>
+          <h1 id="admin-title">Foods</h1>
+          <p class="muted" id="admin-subtitle">Add items, adjust prices and control availability.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary btn-sm" id="new-btn">+ New food</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 id="foods-count">Foods</h2>
+          <div class="toolbar">
+            <input class="input" id="search-input" type="search" placeholder="Search food…" aria-label="Search foods">
+            <select class="select" id="restaurant-filter" aria-label="Filter by restaurant">
+              <option value="">All restaurants</option>
+            </select>
+            <button class="btn btn-outline btn-sm" id="search-btn">Search</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Food</th>
+                <th>Restaurant</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Availability</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="foods-body">
+              <tr><td colspan="7" class="empty-cell">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="foods-pager"></div>
+    </main>
+  </div>
+
+  <div id="food-modal" class="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="food-modal-title">
+      <h3 id="food-modal-title">New food</h3>
+      <div class="form-grid" style="margin-top:12px">
+        <div class="field full"><label for="fm-name">Name</label><input class="input" id="fm-name"></div>
+        <div class="field"><label for="fm-restaurant">Restaurant</label><select class="select" id="fm-restaurant"></select></div>
+        <div class="field"><label for="fm-category">Category</label><select class="select" id="fm-category"></select></div>
+        <div class="field"><label for="fm-price">Price (₹)</label><input class="input" id="fm-price" type="number" min="1"></div>
+        <div class="field"><label for="fm-image">Image URL</label><input class="input" id="fm-image"></div>
+        <div class="field full"><label for="fm-description">Description</label><textarea class="textarea" id="fm-description"></textarea></div>
+        <div class="field"><label class="switch-line"><input type="checkbox" id="fm-isVeg"> Vegetarian</label></div>
+        <div class="field"><label class="switch-line"><input type="checkbox" id="fm-isAvailable" checked> Available</label></div>
+      </div>
+      <div id="fm-error" class="form-error" hidden></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="fm-cancel">Cancel</button>
+        <button class="btn btn-primary" id="fm-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/admin-shell.js"></script>
+  <script src="js/admin-foods.js"></script>
+</body>
+</html>

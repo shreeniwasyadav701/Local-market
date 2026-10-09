@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a Local Market account.">
+  <title>Create account — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+  <div id="nav-root"></div>
+
+  <main class="auth-wrap">
+    <section class="auth-card" aria-labelledby="reg-h">
+      <div class="auth-head">
+        <span class="brand-mark lg" aria-hidden="true">LM</span>
+        <h1 id="reg-h">Create your account</h1>
+        <p class="muted">Join the local marketplace in under a minute.</p>
+      </div>
+
+      <form id="reg-form" class="form-grid" novalidate>
+        <label><span>Name</span>
+          <input name="name" required maxlength="80" autocomplete="name" placeholder="Your full name">
+        </label>
+        <label><span>Email</span>
+          <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label><span>Phone (10 digits)</span>
+          <input name="phone" required pattern="[0-9]{10}" inputmode="numeric" autocomplete="tel" placeholder="9876543210">
+        </label>
+        <label><span>Password (min 6 chars)</span>
+          <input type="password" name="password" required minlength="6" autocomplete="new-password" placeholder="••••••••">
+        </label>
+        <p class="form-error" id="form-error" hidden role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Create account</button>
+      </form>
+
+      <p class="auth-alt">Already have an account? <a href="login.html">Login</a></p>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      LM.ui.renderNavbar("register.html");
+      if (LM.auth.isLoggedIn()) {
+        window.location.replace("index.html");
+        return;
+      }
+      const form = document.getElementById("reg-form");
+      const errEl = document.getElementById("form-error");
+      const btn = document.getElementById("submit-btn");
+      const redirect = new URLSearchParams(window.location.search).get("redirect") || "index.html";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errEl.hidden = true;
+
+        const payload = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim().toLowerCase(),
+          phone: form.phone.value.trim(),
+          password: form.password.value,
+        };
+
+        if (!payload.name || !payload.email || !payload.phone || !payload.password) {
+          errEl.textContent = "Name, email, phone and password are required.";
+          errEl.hidden = false;
+          return;
+        }
+        if (!/^[0-9]{10}$/.test(payload.phone)) {
+          errEl.textContent = "Phone must be exactly 10 digits.";
+          errEl.hidden = false;
+          return;
+        }
+        if (payload.password.length < 6) {
+          errEl.textContent = "Password must be at least 6 characters.";
+          errEl.hidden = false;
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Creating...";
+        try {
+          await LM.auth.register(payload);
+          LM.ui.toast("Account created — welcome!", "success");
+          window.location.href = /^\/?[a-z0-9_-]+\.html(\?[^#]*)?$/i.test(redirect) ? redirect : "index.html";
+        } catch (err) {
+          errEl.textContent = err.message;
+          errEl.hidden = false;
+          btn.disabled = false;
+          btn.textContent = "Create account";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

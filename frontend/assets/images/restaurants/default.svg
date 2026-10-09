@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Local market storefront illustration">
+  <rect width="600" height="400" fill="#e8f3ef"/>
+  <rect x="0" y="300" width="600" height="100" fill="#d7e8e1"/>
+  <rect x="120" y="150" width="360" height="160" rx="8" fill="#ffffff" stroke="#12876f" stroke-width="6"/>
+  <rect x="150" y="200" width="120" height="110" rx="6" fill="#e8f3ef" stroke="#12876f" stroke-width="5"/>
+  <rect x="330" y="200" width="120" height="70" rx="6" fill="#e8f3ef" stroke="#12876f" stroke-width="5"/>
+  <rect x="330" y="285" width="120" height="25" rx="4" fill="#f59e0b"/>
+  <path d="M110 150 L300 80 L490 150 Z" fill="#12876f"/>
+  <rect x="140" y="130" width="60" height="30" rx="6" fill="#f59e0b"/>
+  <rect x="270" y="130" width="60" height="30" rx="6" fill="#f59e0b"/>
+  <rect x="400" y="130" width="60" height="30" rx="6" fill="#f59e0b"/>
+  <circle cx="470" cy="90" r="26" fill="#f59e0b"/>
+  <text x="470" y="99" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">★</text>
+</svg>

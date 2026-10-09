@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage delivery addresses on Local Market.">
+  <title>Addresses — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="nav-root"></div>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Saved addresses</h1>
+        <p class="muted" id="addr-count">Manage where your food is delivered.</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-primary btn-sm" id="add-btn">+ Add address</button>
+      </div>
+    </div>
+
+    <section class="panel" id="form-panel" hidden aria-labelledby="form-h">
+      <h2 id="form-h">New address</h2>
+      <form id="addr-form" class="form-grid">
+        <input type="hidden" name="id">
+        <label><span>Full name *</span><input name="fullName" required maxlength="60" autocomplete="name"></label>
+        <label><span>Phone (10 digits) *</span><input name="phone" required pattern="[0-9]{10}" inputmode="numeric" autocomplete="tel"></label>
+        <label><span>House / flat *</span><input name="houseNumber" required maxlength="50"></label>
+        <label><span>Street *</span><input name="street" required maxlength="100"></label>
+        <label><span>Area / locality *</span><input name="area" required maxlength="100"></label>
+        <label><span>City *</span><input name="city" required maxlength="60"></label>
+        <label><span>State *</span><input name="state" required maxlength="60"></label>
+        <label><span>Pincode *</span><input name="pincode" required pattern="[1-9][0-9]{5}" inputmode="numeric"></label>
+        <label><span>Landmark</span><input name="landmark" maxlength="120"></label>
+        <label><span>Type</span>
+          <select name="addressType"><option value="HOME">Home</option><option value="WORK">Work</option><option value="OTHER">Other</option></select>
+        </label>
+        <label class="check-line"><input type="checkbox" name="isDefault"> Set as default</label>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="save-btn">Save address</button>
+        </div>
+      </form>
+    </section>
+
+    <div id="addr-zone"></div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/addresses.js"></script>
+</body>
+</html>

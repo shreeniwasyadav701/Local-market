@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Checkout on Local Market.">
+  <title>Checkout — Local Market</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="nav-root"></div>
+
+  <main class="container" id="checkout-main">
+    <div class="page-head">
+      <div>
+        <h1>Checkout</h1>
+        <p class="muted">Choose where to deliver and how to pay.</p>
+      </div>
+      <div class="page-actions">
+        <a class="btn btn-ghost btn-sm" href="cart.html">← Back to cart</a>
+      </div>
+    </div>
+
+    <div class="checkout-grid">
+      <div>
+        <section class="panel" aria-labelledby="addr-h">
+          <div class="panel-head">
+            <h2 id="addr-h">📍 Delivery address</h2>
+            <button class="btn btn-outline btn-sm" id="toggle-add-addr" type="button">+ Add new</button>
+          </div>
+          <div id="address-list" class="address-options"></div>
+
+          <form id="addr-form" class="form-grid" hidden>
+            <label><span>Full name *</span><input name="fullName" required maxlength="60" autocomplete="name"></label>
+            <label><span>Phone (10 digits) *</span><input name="phone" required pattern="[0-9]{10}" inputmode="numeric" autocomplete="tel"></label>
+            <label><span>House / flat *</span><input name="houseNumber" required maxlength="50"></label>
+            <label><span>Street *</span><input name="street" required maxlength="100"></label>
+            <label><span>Area / locality *</span><input name="area" required maxlength="100"></label>
+            <label><span>City *</span><input name="city" required maxlength="60"></label>
+            <label><span>State *</span><input name="state" required maxlength="60"></label>
+            <label><span>Pincode *</span><input name="pincode" required pattern="[1-9][0-9]{5}" inputmode="numeric"></label>
+            <label><span>Type</span>
+              <select name="addressType"><option value="HOME">Home</option><option value="WORK">Work</option><option value="OTHER">Other</option></select>
+            </label>
+            <label class="check-line"><input type="checkbox" name="isDefault" checked> Set as default</label>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" id="cancel-add-addr">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save address</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="pay-h">
+          <h2 id="pay-h">💳 Payment method</h2>
+          <div class="pay-grid" role="radiogroup" aria-label="Payment method">
+            <label class="radio-card">
+              <input type="radio" name="payMethod" value="COD" checked>
+              <span class="rc-body"><b>💵 Cash on delivery</b><span class="small muted">Pay when your food arrives</span></span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="payMethod" value="MOCK_UPI">
+              <span class="rc-body"><b>📱 UPI (mock)</b><span class="small simulated">Simulated gateway — no real payment</span></span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="payMethod" value="MOCK_CARD">
+              <span class="rc-body"><b>💳 Card (mock)</b><span class="small simulated">Simulated gateway — no card details collected</span></span>
+            </label>
+          </div>
+          <label class="check-line small">
+            <input type="checkbox" id="sim-fail"> Demo: simulate a declined payment
+          </label>
+          <p class="small muted">This project never asks for real card or UPI details. Payments are mocked by the backend.</p>
+        </section>
+      </div>
+
+      <aside id="summary-zone" aria-label="Order summary"></aside>
+    </div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
